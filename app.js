@@ -4,10 +4,11 @@ import dotenv from 'dotenv'
 import authRouter from './routes/authRoute.js'
 import productRouter from './routes/productRoute.js'
 import orderRouter from './routes/orderRoute.js'
-import {  notFound,errorHandler} from "./middlewares/errorMiddleware.js";
+import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet'
 import ExpressMongoSanitize from 'express-mongo-sanitize'
+import { v2 as cloudinary } from 'cloudinary';
 
 const app = express()
 const port = 3000
@@ -15,14 +16,21 @@ const port = 3000
 
 dotenv.config()
 
+// Configuration Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
 
 
 // Middleware
 app.use(express.json())
-app.use(express.urlencoded({extended :true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 // APP Security middleware
-app.use(helmet()) 
+app.use(helmet())
 app.use(ExpressMongoSanitize())
 
 //agar folder dapat diakses melalui browser
