@@ -1,6 +1,6 @@
 import express from "express"
 import { adminMiddleware, protectedMiddleware } from "../middlewares/authMiddleware.js";
-import { allOrder, createOrder, currentUserOrder, detailOrder } from "../controllers/orderController.js";
+import { allOrder, createOrder, currentUserOrder, detailOrder, callbackPayment } from "../controllers/orderController.js";
 
 const router = express.Router()
 
@@ -25,6 +25,11 @@ router.get("/:id", protectedMiddleware, adminMiddleware, detailOrder)
 // get /api/v1/order
 //middleware user
 router.get("/current/user", protectedMiddleware, currentUserOrder)
+
+// pengguna  order
+// post /api/v1/order/callback/midtrans
+//middleware user
+router.post("/callback/midtrans", callbackPayment)
 
 
 

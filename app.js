@@ -35,6 +35,7 @@ app.use(ExpressMongoSanitize())
 
 //agar folder dapat diakses melalui browser
 app.use(express.static('./public'))
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 // entpoint
 app.use('/api/v1/auth', authRouter)

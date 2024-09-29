@@ -24,7 +24,7 @@ const productSchema = new Schema({
   category:{
     type: String,
     required: [true, 'Kategory Product Harus diisi'],
-    enum: ["sepatu","kemea","baju","celana"]
+    enum: ["sepatu","kemeja","baju","celana"]
   },
   stock:{
     type: Number,
