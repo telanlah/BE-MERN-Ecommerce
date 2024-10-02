@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet'
 import ExpressMongoSanitize from 'express-mongo-sanitize'
 import { v2 as cloudinary } from 'cloudinary';
+import cors from 'cors';
 
 const app = express()
 const port = 3000
@@ -42,7 +43,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/product', productRouter)
 app.use('/api/v1/order', orderRouter)
 
-
+app.use(cors())
 app.use(notFound)
 app.use(errorHandler)
 

@@ -1,7 +1,7 @@
 import express from "express"
 import { adminMiddleware, protectedMiddleware } from "../middlewares/authMiddleware.js";
 import { allProduct, createProduct, deleteProduct, detailProduct, fileUpload, updateProduct } from "../controllers/productController.js";
-import {upload} from '../utils/uploadFileHandler.js'
+import { upload } from '../utils/uploadFileHandler.js'
 
 const router = express.Router()
 
@@ -33,7 +33,7 @@ router.delete("/:id", protectedMiddleware, adminMiddleware, deleteProduct)
 // file upload data product
 // post /api/v1/product/file-upload
 //middleware owner
-router.post("/file-upload", protectedMiddleware, adminMiddleware, upload.single('image'), fileUpload)
+router.post("/file", protectedMiddleware, adminMiddleware, upload.single('image'), fileUpload)
 
 
 
